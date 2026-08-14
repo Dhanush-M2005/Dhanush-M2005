@@ -5,7 +5,9 @@
 <h1 align="center">Hello, I’m Dhanush M! 👋 I’m excited to connect with you.</h1>
 
 <h3 align="center">
-  Cloud Engineer & Full Stack Developer building practical digital solutions through consistent learning and clean code. Interested in understanding systems, exploring new technologies, and solving real-world problems.
+  ☁️ Cloud Engineer & Full Stack Developer
+  <br/><br/>
+  Passionate about architecting robust, scalable digital solutions with a focus on clean code and strong fundamentals. I thrive on deeply understanding systems to transform complex concepts into impactful, user-centric products.
 </h3>
 
 <br />

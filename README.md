@@ -55,5 +55,5 @@
 
 ---
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Dhanush-M2005&show_icons=true&theme=radical" alt="Dhanush M GitHub stats" />
+  <img src="https://streak-stats.demolab.com/?user=Dhanush-M2005&theme=radical&ring=2196f3&fire=2196f3" alt="Dhanush M GitHub stats" />
 </div>

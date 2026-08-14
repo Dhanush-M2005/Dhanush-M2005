@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./animated_logo.svg" alt="Animated Logo" width="300" />
+  <img src="animated_logo.svg" alt="Animated Logo" width="300" />
 </div>
 
 <h1 align="center">Hello, I’m Dhanush M! 👋 I’m excited to connect with you.</h1>
@@ -66,9 +66,12 @@
 
 ## ✍️ QUOTES
 
-> *"Success is a journey, not a destination 🚴"*
->
-> <div align="right">— <b>Dhanush M</b></div>
+<div align="center">
+  <br/>
+  <h2><i>"Success is a journey, not a destination 🚴"</i></h2>
+  <h4><i>— Arthur Ashe</i></h4>
+  <br/>
+</div>
 
 ---
 <div align="center">

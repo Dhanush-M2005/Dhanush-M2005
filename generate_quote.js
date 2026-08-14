@@ -29,15 +29,10 @@ const svgContent = `<svg width="800" height="160" viewBox="0 0 800 160" xmlns="h
   <rect class="bg-rect" x="5" y="5" width="790" height="150" />
   
   <!-- Center aligned quote -->
-  <text class="text-quote glow" x="400" y="75" text-anchor="middle" dominant-baseline="middle">
+  <text class="text-quote glow" x="400" y="80" text-anchor="middle" dominant-baseline="middle">
     "Success is a journey, not a destination 🚴"
-  </text>
-  
-  <!-- Right aligned author -->
-  <text class="text-author" x="760" y="125" text-anchor="end" dominant-baseline="middle">
-    — Arthur Ashe
   </text>
 </svg>`;
 
-fs.writeFileSync('quote.svg', svgContent);
-console.log('quote.svg created successfully!');
+fs.writeFileSync('quote_styled.svg', svgContent);
+console.log('quote_styled.svg created successfully!');

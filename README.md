@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="animated_logo.svg" alt="Animated Logo" width="300" />
+  <img src="logo_animated.svg" alt="Animated Logo" width="300" />
 </div>
 
 <h1 align="center">Hello, I’m Dhanush M! 👋 I’m excited to connect with you.</h1>
@@ -69,7 +69,7 @@
 ## ✍️ QUOTES
 
 <div align="center">
-  <img src="quote.svg" alt="Motivational Quote" />
+  <img src="quote_styled.svg" alt="Motivational Quote" />
 </div>
 
 ---

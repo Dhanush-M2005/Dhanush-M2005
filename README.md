@@ -69,10 +69,7 @@
 ## ✍️ QUOTES
 
 <div align="center">
-  <br/>
-  <h2><i>"Success is a journey, not a destination 🚴"</i></h2>
-  <h4><i>— Arthur Ashe</i></h4>
-  <br/>
+  <img src="quote.svg" alt="Motivational Quote" />
 </div>
 
 ---

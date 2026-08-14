@@ -10,18 +10,13 @@
 
 <br />
 
-<p align="center">
-  <h2><i>"Success is a journey, not a destination 🚴"</i></h2>
-</p>
-
-<p align="center">
-  <a href="mailto:dhanushofficial2005@gmail.com">dhanushofficial2005@gmail.com</a>
-</p>
-
 <div align="center">
 
 ## 📡 Connect with me:
 
+<a href="mailto:dhanushofficial2005@gmail.com" target="_blank">
+  <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+</a>
 <a href="https://www.linkedin.com/in/dhanushm2005/" target="_blank">
   <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a>
@@ -31,27 +26,49 @@
 
 </div>
 
-## 🚀 About Me:
-- **Mission:** Focused on learning new technologies by actually using them, not just reading about them. Coding is treated as a daily practice, whether it is building features, fixing problems, or experimenting with ideas. Projects are used as a way to understand systems deeply and turn concepts into something real and usable.
-- **Vision:** Driven by steady growth and long-term clarity. The path is shaped around strong fundamentals, clean problem-solving, and consistent effort.
-- **Education:** B.Tech in Computer Science & Business Systems at Sri Sairam Engineering College (2023 - 2027) | CGPA: 8.42
-- **Experience:** Flutter Developer Intern at Vzync Studios Private Limited (Jan - Feb 2026)
-
 ## 🛠 Languages and Tools:
-<p align="left">
-  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C" />
-  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
-  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" />
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" alt="AWS" />
-  <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="SQL" />
-  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
-</p>
+<div align="center">
+<table>
+  <tr>
+    <td align="center"><b>PROGRAMMING LANGUAGE</b></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=c,java,python,js,dart" alt="Programming Languages" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><b>Frontend</b></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=react,flutter,tailwind,bootstrap" alt="Frontend Frameworks" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><b>Backend and DataBases</b></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=mongodb,mysql,aws" alt="Backend & Databases" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><b>Tools & UI/UX</b></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=git,github,postman,figma" alt="Tools and UI" />
+    </td>
+  </tr>
+</table>
+</div>
+
+## ✍️ QUOTES
+
+> *"Success is a journey, not a destination 🚴"*
+>
+> <div align="right">— <b>Dhanush M</b></div>
 
 ---
 <div align="center">

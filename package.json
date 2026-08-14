@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/Dhanush-M2005/Dhanush-M2005#readme",
   "dependencies": {
-    "jimp": "^1.6.1"
+    "jimp": "^0.16.1"
   }
 }

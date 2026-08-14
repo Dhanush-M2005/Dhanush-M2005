@@ -45,6 +45,3 @@ async function buildSVG() {
 }
 
 buildSVG();
-
-fs.writeFileSync('animated_logo.svg', svgContent);
-console.log('Futuristic animated_logo.svg created successfully!');

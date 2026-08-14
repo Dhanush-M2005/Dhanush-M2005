@@ -6,9 +6,9 @@
       @keyframes spin { 100% { transform: rotate(360deg); } }
       @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
       @keyframes modernFloat {
-        0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.6)) drop-shadow(0 0 20px rgba(58, 123, 213, 0.4)); }
-        50% { transform: translateY(-20px) scale(1.05); filter: drop-shadow(0 0 25px rgba(0, 255, 255, 1)) drop-shadow(0 0 45px rgba(0, 150, 255, 0.8)); }
-        100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.6)) drop-shadow(0 0 20px rgba(58, 123, 213, 0.4)); }
+        0% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-20px) scale(1.05); }
+        100% { transform: translateY(0px) scale(1); }
       }
       .animated-logo {
         animation: modernFloat 4s ease-in-out infinite;

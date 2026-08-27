@@ -78,5 +78,5 @@
 
 ---
 <div align="center">
-  <img src="https://streak-stats.demolab.com/?user=Dhanush-M2005&theme=radical&ring=2196f3&fire=2196f3" alt="Dhanush M GitHub stats" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Dhanush-M2005&theme=radical" alt="Dhanush M GitHub stats" />
 </div>

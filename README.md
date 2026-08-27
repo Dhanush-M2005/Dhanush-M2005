@@ -1,4 +1,5 @@
 <div align="center">
+  <br />
   <img src="logo_animated.svg" alt="Animated Logo" width="300" />
 </div>
 
@@ -78,5 +79,6 @@
 
 ---
 <div align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Dhanush-M2005&theme=radical" alt="Dhanush M GitHub stats" />
+  <h2>✨ Real-Time Holographic Live Stats ✨</h2>
+  <img alt="Holographic Live Stats" src="https://raw.githubusercontent.com/Dhanush-M2005/Dhanush-M2005/output/holographic-stats.svg" width="500" />
 </div>

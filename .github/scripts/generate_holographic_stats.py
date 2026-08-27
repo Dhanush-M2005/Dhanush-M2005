@@ -16,6 +16,7 @@ def fetch_data(url):
 try:
     user_data = fetch_data(f"https://api.github.com/users/{username}")
     repos_data = fetch_data(f"https://api.github.com/users/{username}/repos?per_page=100")
+    events_data = fetch_data(f"https://api.github.com/users/{username}/events?per_page=100")
     
     total_stars = sum(repo.get('stargazers_count', 0) for repo in repos_data)
     public_repos = user_data.get('public_repos', 0)
@@ -25,13 +26,41 @@ try:
     if years_active == 0:
         years_active = 1
         
-except Exception as e:
-    total_stars, public_repos, followers, years_active = "Error", "Error", "Error", "Error"
+    # Build Graph Data from Events (Last 14 days of activity)
+    activity = {}
+    for event in events_data:
+        date_str = event['created_at'][:10]
+        activity[date_str] = activity.get(date_str, 0) + 1
+        
+    # Sort dates and pick the most recent 14 active days
+    sorted_dates = sorted(list(activity.keys()))[-14:]
+    if not sorted_dates:
+        sorted_dates = [datetime.datetime.now().strftime("%Y-%m-%d")]
+        activity[sorted_dates[0]] = 1
+        
+    # Normalize data for SVG chart (Y range: 0 to 60)
+    max_activity = max([activity[d] for d in sorted_dates]) or 1
+    graph_points = []
+    width_step = 280 / max(len(sorted_dates) - 1, 1)
+    
+    for i, date_str in enumerate(sorted_dates):
+        x = i * width_step
+        # Invert Y to draw upwards (Height max is 60)
+        y = 60 - ((activity[date_str] / max_activity) * 50) 
+        graph_points.append(f"{x},{y}")
+        
+    path_data = " ".join(graph_points)
+    area_path = f"0,60 {path_data} 280,60"
 
-svg_template = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="500" height="200">
+except Exception as e:
+    total_stars, public_repos, followers, years_active = "Err", "Err", "Err", "Err"
+    path_data = "0,60 140,20 280,60"
+    area_path = "0,60 140,20 280,60"
+
+svg_template = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 250" width="500" height="250">
   <defs>
     <radialGradient id="hologram-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#0ff" stop-opacity="0.1"/>
+      <stop offset="0%" stop-color="#0ff" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#f0f" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="neon-border" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -43,8 +72,12 @@ svg_template = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200"
       <stop offset="0%" stop-color="#fff"/>
       <stop offset="100%" stop-color="#a5f3fc"/>
     </linearGradient>
+    <linearGradient id="area-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#f0f" stop-opacity="0.1"/>
+    </linearGradient>
     <filter id="neon-glow">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -53,82 +86,59 @@ svg_template = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200"
   </defs>
 
   <style>
-    @keyframes rotateRing {{
-      0% {{ transform: rotate(0deg); }}
-      100% {{ transform: rotate(360deg); }}
-    }}
-    @keyframes reverseRotate {{
-      0% {{ transform: rotate(360deg); }}
-      100% {{ transform: rotate(0deg); }}
-    }}
-    @keyframes floatBox {{
-      0%, 100% {{ transform: translateY(0); }}
-      50% {{ transform: translateY(-5px); }}
-    }}
-    @keyframes fadeIn {{
-      from {{ opacity: 0; transform: translateX(-10px); }}
-      to {{ opacity: 1; transform: translateX(0); }}
-    }}
-    @keyframes pulseGlow {{
-      0%, 100% {{ opacity: 0.6; transform: scale(1); }}
-      50% {{ opacity: 1; transform: scale(1.02); }}
-    }}
-    .bg-rect {{ fill: #0f172a; rx: 15; ry: 15; stroke: url(#neon-border); stroke-width: 2; }}
-    .ring {{ fill: none; stroke-width: 1.5; opacity: 0.6; transform-origin: 390px 100px; }}
+    @keyframes rotateRing {{ 0% {{ transform: rotate(0deg); }} 100% {{ transform: rotate(360deg); }} }}
+    @keyframes reverseRotate {{ 0% {{ transform: rotate(360deg); }} 100% {{ transform: rotate(0deg); }} }}
+    @keyframes pulseGlow {{ 0%, 100% {{ opacity: 0.7; transform: scale(1); }} 50% {{ opacity: 1; transform: scale(1.02); }} }}
+    @keyframes drawLine {{ from {{ stroke-dashoffset: 400; }} to {{ stroke-dashoffset: 0; }} }}
+    @keyframes fadeIn {{ from {{ opacity: 0; transform: translateY(10px); }} to {{ opacity: 1; transform: translateY(0); }} }}
+    
+    .bg-rect {{ fill: #0a0f1d; rx: 15; ry: 15; stroke: url(#neon-border); stroke-width: 2; }}
+    .glow-layer {{ animation: pulseGlow 4s ease-in-out infinite; transform-origin: center; }}
+    
+    .data-text {{ font-family: 'Segoe UI', sans-serif; font-size: 15px; font-weight: 600; fill: url(#text-grad); }}
+    .title-text {{ font-family: 'Segoe UI', sans-serif; font-size: 19px; font-weight: 800; fill: #0ff; filter: url(#neon-glow); }}
+    
+    .ring {{ fill: none; stroke-width: 1.5; opacity: 0.6; transform-origin: 400px 100px; }}
     .ring1 {{ stroke: #0ff; stroke-dasharray: 4 4; animation: rotateRing 10s linear infinite; }}
     .ring2 {{ stroke: #f0f; stroke-dasharray: 8 4; animation: reverseRotate 15s linear infinite; }}
-    .ring3 {{ stroke: #3b82f6; stroke-dasharray: 12 8; animation: rotateRing 20s linear infinite; }}
-    
-    .data-text {{ font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: url(#text-grad); }}
-    .title-text {{ font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 20px; font-weight: 800; fill: #0ff; filter: url(#neon-glow); opacity: 0; animation: fadeIn 0.8s ease-out forwards; animation-delay: 0.1s; }}
     
     .fade-in {{ opacity: 0; animation: fadeIn 0.8s ease-out forwards; }}
-    .delay-1 {{ animation-delay: 0.3s; }}
-    .delay-2 {{ animation-delay: 0.5s; }}
-    .delay-3 {{ animation-delay: 0.7s; }}
-    .delay-4 {{ animation-delay: 0.9s; }}
+    .d1 {{ animation-delay: 0.3s; }} .d2 {{ animation-delay: 0.5s; }}
     
-    .wrapper {{ animation: floatBox 4s ease-in-out infinite; transform-origin: center; }}
-    .glow-layer {{ animation: pulseGlow 3s ease-in-out infinite; transform-origin: center; }}
+    .graph-line {{ fill: none; stroke: #0ff; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; filter: url(#neon-glow); stroke-dasharray: 400; stroke-dashoffset: 400; animation: drawLine 2s ease-out forwards; animation-delay: 0.8s; }}
+    .graph-area {{ fill: url(#area-grad); opacity: 0; animation: fadeIn 1s ease-out forwards; animation-delay: 1.5s; }}
   </style>
 
-  <g class="wrapper">
-    <!-- Glow -->
-    <rect class="glow-layer" fill="url(#hologram-glow)" x="10" y="10" width="480" height="180" rx="15" ry="15"/>
-    
-    <!-- Main Box -->
-    <rect class="bg-rect" x="10" y="10" width="480" height="180" />
+  <!-- Glow and Background -->
+  <rect class="glow-layer" fill="url(#hologram-glow)" x="10" y="10" width="480" height="230" rx="15" ry="15"/>
+  <rect class="bg-rect" x="10" y="10" width="480" height="230" />
 
-    <!-- Animated Holographic Core on the right -->
-    <g>
-      <circle class="ring ring1" cx="390" cy="100" r="50"/>
-      <circle class="ring ring2" cx="390" cy="100" r="65"/>
-      <circle class="ring ring3" cx="390" cy="100" r="80"/>
-      <text x="390" y="110" font-family="'Segoe UI', sans-serif" font-size="34" font-weight="bold" fill="#0ff" text-anchor="middle" filter="url(#neon-glow)">{username[0]}</text>
-    </g>
+  <!-- Holographic Core -->
+  <g>
+    <circle class="ring ring1" cx="400" cy="100" r="50"/>
+    <circle class="ring ring2" cx="400" cy="100" r="65"/>
+    <text x="400" y="112" font-family="'Segoe UI', sans-serif" font-size="36" font-weight="bold" fill="#0ff" text-anchor="middle" filter="url(#neon-glow)">{username[0]}</text>
+  </g>
 
-    <!-- Data -->
-    <text x="35" y="45" class="title-text">HOLOGRAPHIC LIVE STATS</text>
-    
-    <g class="fade-in delay-1">
-      <text x="35" y="85" class="data-text">⭐ Total Stars Earned:</text>
-      <text x="220" y="85" class="data-text" fill="#f0f">{total_stars}</text>
-    </g>
+  <!-- Text Stats -->
+  <text x="35" y="45" class="title-text">HOLOGRAPHIC LIVE STATS</text>
+  <g class="fade-in d1">
+    <text x="35" y="80" class="data-text">⭐ Stars: <tspan fill="#f0f">{total_stars}</tspan></text>
+    <text x="35" y="105" class="data-text">📦 Repos: <tspan fill="#f0f">{public_repos}</tspan></text>
+  </g>
+  <g class="fade-in d2">
+    <text x="180" y="80" class="data-text">👥 Followers: <tspan fill="#f0f">{followers}</tspan></text>
+    <text x="180" y="105" class="data-text">⏳ Active: <tspan fill="#f0f">{years_active} Yrs</tspan></text>
+  </g>
 
-    <g class="fade-in delay-2">
-      <text x="35" y="115" class="data-text">📦 Public Repositories:</text>
-      <text x="220" y="115" class="data-text" fill="#f0f">{public_repos}</text>
-    </g>
-
-    <g class="fade-in delay-3">
-      <text x="35" y="145" class="data-text">👥 GitHub Followers:</text>
-      <text x="220" y="145" class="data-text" fill="#f0f">{followers}</text>
-    </g>
-
-    <g class="fade-in delay-4">
-      <text x="35" y="175" class="data-text">⏳ Years Active:</text>
-      <text x="220" y="175" class="data-text" fill="#f0f">{years_active} Years</text>
-    </g>
+  <!-- Live Animated Event Graph -->
+  <g transform="translate(35, 160)">
+    <polygon class="graph-area" points="{area_path}" />
+    <polyline class="graph-line" points="{path_data}" />
+    <!-- Graph Grid Lines -->
+    <line x1="0" y1="60" x2="280" y2="60" stroke="#f0f" stroke-width="1" stroke-dasharray="2 2" opacity="0.3"/>
+    <text x="290" y="65" font-family="'Segoe UI', sans-serif" font-size="10" fill="#0ff" opacity="0.6">TODAY</text>
+    <text x="0" y="-10" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#f0f" opacity="0.8">RECENT ACTIVITY MOMENTUM</text>
   </g>
 </svg>
 """

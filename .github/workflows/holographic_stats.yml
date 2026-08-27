@@ -29,10 +29,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Push results to output branch
-              uses: crazy-max/ghaction-github-pages@v3.1.0
+            - name: Commit and push SVG
+              uses: stefanzweifel/git-auto-commit-action@v5
               with:
-                  target_branch: output
-                  build_dir: dist
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  commit_message: "Automated custom holographic stats update"

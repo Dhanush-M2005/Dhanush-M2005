@@ -80,5 +80,5 @@
 ---
 <div align="center">
   <h2>✨ Real-Time Holographic Live Stats ✨</h2>
-  <img alt="Holographic Live Stats" src="https://raw.githubusercontent.com/Dhanush-M2005/Dhanush-M2005/output/holographic-stats.svg" width="500" />
+  <img alt="Holographic Live Stats" src="holographic-stats.svg" width="500" />
 </div>

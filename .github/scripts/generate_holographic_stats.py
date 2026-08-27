@@ -133,6 +133,5 @@ svg_template = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200"
 </svg>
 """
 
-os.makedirs("dist", exist_ok=True)
-with open("dist/holographic-stats.svg", "w", encoding="utf-8") as f:
+with open("holographic-stats.svg", "w", encoding="utf-8") as f:
     f.write(svg_template)

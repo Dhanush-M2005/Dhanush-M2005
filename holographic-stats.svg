@@ -65,7 +65,7 @@
   <text x="35" y="45" class="title-text">HOLOGRAPHIC LIVE STATS</text>
   <g class="fade-in d1">
     <text x="35" y="80" class="data-text">⭐ Stars: <tspan fill="#f0f">0</tspan></text>
-    <text x="35" y="105" class="data-text">📦 Repos: <tspan fill="#f0f">15</tspan></text>
+    <text x="35" y="105" class="data-text">📦 Repos: <tspan fill="#f0f">14</tspan></text>
   </g>
   <g class="fade-in d2">
     <text x="180" y="80" class="data-text">👥 Followers: <tspan fill="#f0f">0</tspan></text>

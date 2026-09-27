@@ -74,8 +74,8 @@
 
   <!-- Live Animated Event Graph -->
   <g transform="translate(35, 160)">
-    <polygon class="graph-area" points="0,60 0.0,47.5 70.0,47.5 140.0,10.0 210.0,47.5 280.0,47.5 280,60" />
-    <polyline class="graph-line" points="0.0,47.5 70.0,47.5 140.0,10.0 210.0,47.5 280.0,47.5" />
+    <polygon class="graph-area" points="0,60 0.0,43.333333333333336 70.0,43.333333333333336 140.0,10.0 210.0,43.333333333333336 280.0,43.333333333333336 280,60" />
+    <polyline class="graph-line" points="0.0,43.333333333333336 70.0,43.333333333333336 140.0,10.0 210.0,43.333333333333336 280.0,43.333333333333336" />
     <!-- Graph Grid Lines -->
     <line x1="0" y1="60" x2="280" y2="60" stroke="#f0f" stroke-width="1" stroke-dasharray="2 2" opacity="0.3"/>
     <text x="290" y="65" font-family="'Segoe UI', sans-serif" font-size="10" fill="#0ff" opacity="0.6">TODAY</text>
